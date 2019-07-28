@@ -1,0 +1,8 @@
+{
+   "name": "Quinton Hoffman Personal Website",
+   "short_name": "Quinton Hoffman",
+   "start_url": "/",
+   "display": "standalone",
+   "orientation": "portrait",
+   "theme_color": "#000000"
+}
