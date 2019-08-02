@@ -1,7 +1,8 @@
 $colors: (
 	"background-primary": #1e2634,
-	"background-secondary": #6a71ba,
-	"text-primary": #f0f0f0,
+	"background-secondary": #57729e,
+	"translucent-bg-primary": #1e263455,
+	"text-primary": #dadada,
 );
 
 @function color($name, $type: null) {
@@ -74,12 +75,46 @@ main {
 	}
 
 	section.section-card {
-		background-color: black;
-		box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.7);
+		background-color: color("background", "secondary");
+		box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.5);
+		border-radius: 10px;
+		padding: 30px;
+		display: grid;
+		grid-template-columns: auto;
+		grid-template-rows: 30% 20% auto;
+		justify-content: center;
+		align-items: center;
+
+		.section-card__item--header {
+			height: 100%;
+
+			img {
+				object-fit: contain;
+				height: 100%;
+				display: block;
+				margin: auto;
+				border: 7px solid #fff3;
+			}
+		}
+
+		.section-card__item--title {
+			text-transform: capitalize;
+			font-family: Helvetica,Roboto,Arial,sans-serif;
+			text-align: center;
+			color: color("text", "primary");
+		}
 	}
 
 	section.section-text {
 		padding: 10px;
 		color: color("text", "primary");
 	}
+}
+
+.circle-image {
+	border-radius: 50%;
+}
+
+.vertical-bar:before {
+	content: "\26ac";
 }
