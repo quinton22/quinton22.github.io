@@ -97,7 +97,7 @@ main section.section-text {
 }
 
 .vertical-bar:before {
-  content: "⚬";
+  content: "○";
 }
 
 /*# sourceMappingURL=main.css.map */
