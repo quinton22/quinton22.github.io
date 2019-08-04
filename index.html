@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<title>Quinton Hoffman</title>
 	<meta name="description" content="See my resume, education, work history, and personal projects. Contact me and find links to social media.">
@@ -36,6 +36,9 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
+	<script defer src="scripts/bg.js"></script>
+	<script defer src="scripts/templates.js"></script>
+	<script defer src="scripts/main.js"></script>
 </head>
 <body>
 	<div id="bg">
@@ -43,10 +46,18 @@
 	<main id="main">
 		<section class="section-card">
 			<div class="section-card__item section-card__item--header">
-				<img class="circle-image" src="img/me.jpg" alt="me">
+				<div class="image-bg">
+					<div class="big"></div>
+					<div class="small"></div>
+					<div class="medium"></div>
+				</div>
+				<div class="image-container">
+					<img class="circle-image" src="img/me.jpg" alt="me">
+				</div>
 			</div>
-			<div class="section-card__item section-card__item--title">
-				<h3>Student&nbsp;&nbsp;<span class="vertical-bar"></span>&nbsp;&nbsp;Software Developer&nbsp;&nbsp;<span class="vertical-bar"></span>&nbsp;&nbsp;Spikeball Enthusiast</h3>
+			<div class="section-card__item section-card__item--content">
+				<h3>Hi, I'm <span class="my-name text-emphasis-color big"></span></h3>
+				<h4 id="my-key-attributes"></h3>
 			</div>
 		</section>
 		<section class="section-text">
@@ -58,6 +69,8 @@
 			</div>
 		</section>
 	</main>
-	<script src="scripts/bg.js"></script>
 </body>
+
+<template data-options='{"class": "my-name", "replaceOuter": false}'>Quinton Hoffman</template>
+
 </html>
