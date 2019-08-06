@@ -5,11 +5,20 @@ $colors: (
 	"text-primary": #dadada,
 );
 
+$viewport-widths: (
+	"small": 425px,
+	"medium": 660px,
+);
+
 @function color($name, $type: null) {
 	@if($type) {
 		@return map-get($colors, $name + "-" + $type);
 	}
 	@return map-get($colors, $name);
+}
+
+@function viewport-width($size) {
+	@return map-get($viewport-widths, $size);
 }
 
 @function getSpacingFromDim($dim, $max: 100%) {
@@ -20,6 +29,11 @@ $colors: (
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+}
+
+html, body, main {
+	height: 100%;
+	width: 100%;
 }
 
 
@@ -40,24 +54,28 @@ $colors: (
 }
 
 body {
-	height: 100vh;
-	width: 100vw;
-	display: flex;
-	flex-flow: column nowrap;
-	align-items: center;
-	justify-content: center;
 	background-color: color("background", "primary");
 	color: color("text", "primary");
+	overflow: hidden;
 
 	#bg {
-		height: 100vh;
-		width: 100vw;
+		height: 220vh;
+		width: 100%;
 		position: fixed;
 		top: 0;
 		left: 0;
 		background-color: color("background", "primary");
 		z-index: -1;
 		overflow: hidden;
+
+		@media (min-width: viewport-width("medium")) {
+			height: 120vh;
+		}
+
+		.parallax-bg {
+			transform: translateZ(-2px) scale(3);
+			transform-origin: top left;
+		}
 
 		.bg-circle {
 			width: 0px;
@@ -79,12 +97,33 @@ body {
 }
 
 main {
-	height: 70%;
-	width: 90%;
-	display: flex;
-	flex-flow: row nowrap;
+	overflow-y: auto;
+	overflow-x: hidden;
+	transform-style: preserve-3d;
+	perspective: 1px;
+	perspective-origin: top left;
+}
 
-	section {
+#home-section {
+	margin: 0 auto;
+	height: 180vh;
+	width: 90%;
+	padding-top: 5vh;
+	display: flex;
+	flex-flow: column nowrap;
+
+	@media (min-width: viewport-width("small")) {
+		width: 80%;
+	}
+
+	@media (min-width:  viewport-width("medium")) {
+		height: 100vh;
+		width: 90%;
+		padding: 7.5vh 0;
+		flex-flow: row nowrap;
+	}
+
+	.home-section__item {
 		flex: 1;
 		display: flex;
 		flex-flow: column nowrap;
@@ -93,7 +132,7 @@ main {
 		min-width: 0;
 	}
 
-	section.section-card {
+	.home-section__card {
 		background-color: color("background", "secondary");
 		box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 		transition: box-shadow 0.3s cubic-bezier(.25,.8,.25,1);
@@ -101,7 +140,7 @@ main {
 		padding: 30px;
 		display: grid;
 		grid-template-columns: auto;
-		grid-template-rows: 30% auto;
+		grid-template-rows: 25% auto;
 		justify-content: center;
 		align-items: center;
 		transform: translateX(-500px);
@@ -109,50 +148,50 @@ main {
 		transform-origin: center;
 	}
 
-	.section-card__item--header {
+	.home-section__card-item--header {
 		height: 100%;
 		position: relative;
 
-		$image-height: 30%;
-		$image-width: 70%;
-
-		.image-bg {
+		.home-section__image-bg {
 			width: 100%;
 			height: 100%;
 
 			&, div {
 				position: absolute;
+				border-radius: 500px;
 			}
+
+			$diff-width: 20%;
+			$big-width: 75%;
+			$small-width: $big-width + $diff-width;
+			$medium-width: $big-width - $diff-width;
 
 			.big {
 				top: 35%;
 				bottom: 35%;
-				left: 15%;
-				right: 15%;
+				left: getSpacingFromDim($big-width);
+				right: getSpacingFromDim($big-width);
 				background-color: color("background", "primary");
-				border-radius: 20px;
 			}
 
 			.medium {
 				background-color: #4367a5;
 				top: 40%;
 				bottom: 40%;
-				left: 25%;
-				right: 25%;
-				border-radius: 15px;
+				left: getSpacingFromDim($medium-width);
+				right: getSpacingFromDim($medium-width);
 			}
 
 			.small {
 				top: 47.5%;
 				bottom: 47.5%;
-				left: 5%;
-				right: 5%;
+				left: getSpacingFromDim($small-width);
+				right: getSpacingFromDim($small-width);
 				background-color: #6393e5;
-				border-radius: 5px;
 			}
 		}
 
-		.image-container {
+		.home-section__image-container {
 			position: absolute;
 			width: 100%;
 			height: 100%;
@@ -168,7 +207,7 @@ main {
 		}
 	}
 
-	.section-card__item--content {
+	.home-section__card-item--content {
 		padding: 10px 0;
 		height: 100%;
 		text-transform: capitalize;
@@ -181,8 +220,14 @@ main {
 		}
 	}
 
-	section.section-text {
+	.home-section__text {
 		padding: 10px;
 		color: color("text", "primary");
 	}
+}
+
+#more-section {
+	background-color: white;
+	height: 100vh;
+	width: 100vw;
 }

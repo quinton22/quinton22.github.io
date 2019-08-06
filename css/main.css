@@ -5,6 +5,11 @@
   box-sizing: border-box;
 }
 
+html, body, main {
+  height: 100%;
+  width: 100%;
+}
+
 .circle-image {
   border-radius: 50%;
 }
@@ -22,24 +27,28 @@
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  justify-content: center;
   background-color: #1e2634;
   color: #dadada;
+  overflow: hidden;
 }
 body #bg {
-  height: 100vh;
-  width: 100vw;
+  height: 220vh;
+  width: 100%;
   position: fixed;
   top: 0;
   left: 0;
   background-color: #1e2634;
   z-index: -1;
   overflow: hidden;
+}
+@media (min-width: 660px) {
+  body #bg {
+    height: 120vh;
+  }
+}
+body #bg .parallax-bg {
+  transform: translateZ(-2px) scale(3);
+  transform-origin: top left;
 }
 body #bg .bg-circle {
   width: 0px;
@@ -61,12 +70,35 @@ body #bg .bg-circle--animated {
 }
 
 main {
-  height: 70%;
-  width: 90%;
-  display: flex;
-  flex-flow: row nowrap;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transform-style: preserve-3d;
+  perspective: 1px;
+  perspective-origin: top left;
 }
-main section {
+
+#home-section {
+  margin: 0 auto;
+  height: 180vh;
+  width: 90%;
+  padding-top: 5vh;
+  display: flex;
+  flex-flow: column nowrap;
+}
+@media (min-width: 425px) {
+  #home-section {
+    width: 80%;
+  }
+}
+@media (min-width: 660px) {
+  #home-section {
+    height: 100vh;
+    width: 90%;
+    padding: 7.5vh 0;
+    flex-flow: row nowrap;
+  }
+}
+#home-section .home-section__item {
   flex: 1;
   display: flex;
   flex-flow: column nowrap;
@@ -74,7 +106,7 @@ main section {
   justify-content: center;
   min-width: 0;
 }
-main section.section-card {
+#home-section .home-section__card {
   background-color: #57729e;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   transition: box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -82,62 +114,60 @@ main section.section-card {
   padding: 30px;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 30% auto;
+  grid-template-rows: 25% auto;
   justify-content: center;
   align-items: center;
   transform: translateX(-500px);
   transition: transform 0.7s;
   transform-origin: center;
 }
-main .section-card__item--header {
+#home-section .home-section__card-item--header {
   height: 100%;
   position: relative;
 }
-main .section-card__item--header .image-bg {
+#home-section .home-section__card-item--header .home-section__image-bg {
   width: 100%;
   height: 100%;
 }
-main .section-card__item--header .image-bg, main .section-card__item--header .image-bg div {
+#home-section .home-section__card-item--header .home-section__image-bg, #home-section .home-section__card-item--header .home-section__image-bg div {
   position: absolute;
+  border-radius: 500px;
 }
-main .section-card__item--header .image-bg .big {
+#home-section .home-section__card-item--header .home-section__image-bg .big {
   top: 35%;
   bottom: 35%;
-  left: 15%;
-  right: 15%;
+  left: 12.5%;
+  right: 12.5%;
   background-color: #1e2634;
-  border-radius: 20px;
 }
-main .section-card__item--header .image-bg .medium {
+#home-section .home-section__card-item--header .home-section__image-bg .medium {
   background-color: #4367a5;
   top: 40%;
   bottom: 40%;
-  left: 25%;
-  right: 25%;
-  border-radius: 15px;
+  left: 22.5%;
+  right: 22.5%;
 }
-main .section-card__item--header .image-bg .small {
+#home-section .home-section__card-item--header .home-section__image-bg .small {
   top: 47.5%;
   bottom: 47.5%;
-  left: 5%;
-  right: 5%;
+  left: 2.5%;
+  right: 2.5%;
   background-color: #6393e5;
-  border-radius: 5px;
 }
-main .section-card__item--header .image-container {
+#home-section .home-section__card-item--header .home-section__image-container {
   position: absolute;
   width: 100%;
   height: 100%;
   z-index: 1;
 }
-main .section-card__item--header img {
+#home-section .home-section__card-item--header img {
   object-fit: contain;
   height: 100%;
   display: block;
   margin: auto;
   border: 7px solid #6393e5;
 }
-main .section-card__item--content {
+#home-section .home-section__card-item--content {
   padding: 10px 0;
   height: 100%;
   text-transform: capitalize;
@@ -145,12 +175,18 @@ main .section-card__item--content {
   text-align: center;
   color: #dadada;
 }
-main .section-card__item--content :first-child {
+#home-section .home-section__card-item--content :first-child {
   padding: 15px 0;
 }
-main section.section-text {
+#home-section .home-section__text {
   padding: 10px;
   color: #dadada;
+}
+
+#more-section {
+  background-color: white;
+  height: 100vh;
+  width: 100vw;
 }
 
 /*# sourceMappingURL=main.css.map */

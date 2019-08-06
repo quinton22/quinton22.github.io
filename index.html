@@ -41,32 +41,35 @@
 	<script defer src="scripts/main.js"></script>
 </head>
 <body>
-	<div id="bg">
-	</div>
 	<main id="main">
-		<section class="section-card">
-			<div class="section-card__item section-card__item--header">
-				<div class="image-bg">
-					<div class="big"></div>
-					<div class="small"></div>
-					<div class="medium"></div>
+		<div id="bg"></div>
+		<section id="home-section" class="section">
+			<div class="home-section__item home-section__card">
+				<div class="home-section__card-item home-section__card-item--header">
+					<div class="home-section__image-bg">
+						<div class="big"></div>
+						<div class="small"></div>
+						<div class="medium"></div>
+					</div>
+					<div class="home-section__image-container">
+						<img class="circle-image" src="img/me.jpg" alt="me">
+					</div>
 				</div>
-				<div class="image-container">
-					<img class="circle-image" src="img/me.jpg" alt="me">
+				<div class="home-section__card-item home-section__card-item--content">
+					<h3>Hi, I'm <span class="my-name text-emphasis-color big"></span></h3>
+					<h4 id="my-key-attributes"></h3>
 				</div>
 			</div>
-			<div class="section-card__item section-card__item--content">
-				<h3>Hi, I'm <span class="my-name text-emphasis-color big"></span></h3>
-				<h4 id="my-key-attributes"></h3>
+			<div class="home-section__item home-section__text">
+				<div class="home-section__text-header">
+					<h1>Hi.</h1>
+				</div>
+				<div class="home-section__text-content">
+					<h4>My name is Quinton Hoffman.</h4>
+				</div>
 			</div>
 		</section>
-		<section class="section-text">
-			<div class="section-text__header">
-				<h1>Hi.</h1>
-			</div>
-			<div class="section-text__content">
-				<h4>My name is Quinton Hoffman.</h4>
-			</div>
+		<section id="more-section">
 		</section>
 	</main>
 </body>
