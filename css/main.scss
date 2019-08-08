@@ -104,48 +104,85 @@ main {
 	perspective-origin: top left;
 }
 
+section {
+	$scroll-arrow-radius: 20px;
+	.scroll-arrow {
+		position: absolute;
+		z-index: 2;
+		width: $scroll-arrow-radius * 2;
+		height: $scroll-arrow-radius * 2;
+		top: -$scroll-arrow-radius;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+		border-radius: 50%;
+		line-height: $scroll-arrow-radius * 2;
+		text-align: center;
+		background-color: color("background", "secondary");
+		cursor: pointer;
+		box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+		transition: box-shadow 0.3s cubic-bezier(.25,.8,.25,1);
+
+		&:hover {
+			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.22), 0px 5px 7px rgba(0, 0, 0, 0.18), inset 0 0 0 20px rgba(255, 255, 255, 0.15);
+		}
+
+		span:before {
+			display: inline-block;
+			color: color("text", "primary");
+			transform: rotate(90deg);
+			content: '\27A4';
+		}
+	}
+}
+
 #home-section {
 	margin: 0 auto;
 	height: 180vh;
 	width: 90%;
-	padding-top: 5vh;
+	padding: 5vh 0;
 	display: flex;
 	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: stretch;
 
 	@media (min-width: viewport-width("small")) {
 		width: 80%;
 	}
 
 	@media (min-width:  viewport-width("medium")) {
-		height: 100vh;
+		height: 95vh;
 		width: 90%;
 		padding: 7.5vh 0;
 		flex-flow: row nowrap;
 	}
 
 	.home-section__item {
-		flex: 1;
-		display: flex;
-		flex-flow: column nowrap;
-		align-items: center;
-		justify-content: center;
+		flex: 1 0 50%;
 		min-width: 0;
 	}
 
 	.home-section__card {
 		background-color: color("background", "secondary");
 		box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-		transition: box-shadow 0.3s cubic-bezier(.25,.8,.25,1);
 		border-radius: 5px;
 		padding: 30px;
 		display: grid;
-		grid-template-columns: auto;
+		grid-template-columns: 100%;
 		grid-template-rows: 25% auto;
 		justify-content: center;
 		align-items: center;
-		transform: translateX(-500px);
-		transition: transform 0.7s;
+		animation-name: slideIn;
+		animation-duration: 1s;
+		animation-delay: 0.5s;
+		animation-fill-mode: forwards;
+		transform: translateX(-150%);
 		transform-origin: center;
+	}
+
+	@keyframes slideIn {
+		from { transform: translateX(-150%) }
+		to {  transform: translateX(0) }
 	}
 
 	.home-section__card-item--header {
@@ -221,13 +258,18 @@ main {
 	}
 
 	.home-section__text {
+		display: flex;
+		flex-flow: column nowrap;
+		align-items: center;
+		justify-content: center;
 		padding: 10px;
 		color: color("text", "primary");
 	}
 }
 
 #more-section {
-	background-color: white;
+	background-color: color("text", "primary");
 	height: 100vh;
 	width: 100vw;
+	position: relative;
 }
