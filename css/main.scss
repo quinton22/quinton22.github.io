@@ -33,7 +33,6 @@ $viewport-widths: (
 
 html, body, main {
 	height: 100%;
-	width: 100%;
 }
 
 
@@ -102,6 +101,7 @@ main {
 	transform-style: preserve-3d;
 	perspective: 1px;
 	perspective-origin: top left;
+	scroll-behavior: smooth;
 }
 
 section {
@@ -120,6 +120,8 @@ section {
 		text-align: center;
 		background-color: color("background", "secondary");
 		cursor: pointer;
+		overflow: hidden;
+		text-decoration: none;
 		box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 		transition: box-shadow 0.3s cubic-bezier(.25,.8,.25,1);
 
@@ -128,10 +130,10 @@ section {
 		}
 
 		span:before {
-			display: inline-block;
+			display: block;
 			color: color("text", "primary");
 			transform: rotate(90deg);
-			content: '\27A4';
+			content: '\2771';
 		}
 	}
 }
