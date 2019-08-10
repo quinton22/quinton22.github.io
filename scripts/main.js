@@ -7,7 +7,8 @@ fadeOutOnScrollElements = Array.from(document.getElementsByClassName('fadeout-on
 document.getElementById('main').addEventListener("scroll", function() {
 	fadeOutOnScrollElements.forEach(el => {
 		watchItem = document.getElementById(el.getAttribute('data-fadeout-id'));
-		opacity = 1 - this.scrollTop / (watchItem.offsetTop + 0.75 * watchItem.offsetHeight);
+		fadeoutStart = el.getAttribute('data-fadeout-start') || 1;
+		opacity = (watchItem.getBoundingClientRect().y / fadeoutStart - 100) / window.innerHeight;
 		opacity = opacity > 1 ? 1 : (opacity < 0 ? 0 : opacity);
 		el.style.opacity = opacity;
 	});
